@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Magento Admin Redirect</title>
+    <link rel="stylesheet" href="styles/popup.css" />
+</head>
+<body>
+<!-- Tabs Navigation -->
+<div class="tabs">
+    <div class="tab active" data-target="admin-tab">Open current product in Admin</div>
+    <div class="tab" data-target="description-tab">Description</div>
+    <div class="tab" data-target="contact-tab">Contact us</div>
+</div>
+<!-- Tabs Navigation -->
+
+<!-- Tabs Open product in admin -->
+<div id="admin-tab" class="tab-content active">
+    <button id="redirect-button">Go to Admin</button>
+    <h4>Allowed URLs and Admin path:</h4>
+    <table id="url-table">
+        <thead>
+        <tr>
+            <th>Website Base URL 'https://myshop.com'</th>
+            <th>Admin Base URL 'admin'</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <button id="add-row">Add Row</button>
+    <button id="save-urls">Save URLs</button>
+</div>
+<!-- Tabs Open product in admin -->
+
+<!-- Description -->
+<div id="description-tab" class="tab-content">
+    <span>Hello there! This is a simple popup extension for Magento 2. It allows you to open the current product in the Magento Admin panel. You can also manage the URLs and Admin path. Enjoy!</span>
+    <p>This expansion was created for my favorite team. I hope we will create many more cool things for you. We spend half of our lives at work and it's good when you have a cool team around you. So first of all I want to say thank you to the guys William, Volodya and Daniil for this cool year.</p>
+</div>
+<!-- Description -->
+
+<!-- Contact -->
+<div id="contact-tab" class="tab-content">
+    <a href="https://www.linkedin.com/in/william-ramaki-76480557?originalSubdomain=dk">William Ramaki 'COO'</a>
+    <a href="https://www.linkedin.com/in/volodya-martynyshyn/">Volodya Martynyshyn 'Developer'</a>
+    <a href="https://www.linkedin.com/in/daniil-anastiuk-8b2496174/">Daniil Anastiuk 'Developer'</a>
+</div>
+<!-- Contact -->
+
+<script src="pages/ProductInAdmin/index.js"></script>
+<script src="components/tabs/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "Magento Admin Extension",
+  "description": "Redirect to Magento Admin product page from product URL.",
+  "version": "1.0",
+  "permissions": ["storage", "scripting", "activeTab"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Go to Magento Admin"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["actions/product/getProductId.js"]
+    }
+  ],
+  "icons": {
+    "128": "pub/icon.png"
+  }
+}

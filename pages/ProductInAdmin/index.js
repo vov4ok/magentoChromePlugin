@@ -1,0 +1,67 @@
+document.addEventListener("DOMContentLoaded", function () {
+    const tableBody = document.querySelector("#url-table tbody");
+    const addRowBtn = document.getElementById("add-row");
+    const saveBtn = document.getElementById("save-urls");
+    const redirectBtn = document.getElementById("redirect-button");
+
+
+    // Load saved URLs
+    chrome.storage.sync.get("allowedUrls", (data) => {
+        const allowedUrls = data.allowedUrls || [];
+        allowedUrls.forEach((urlPair) => addRow(urlPair));
+    });
+
+
+    addRowBtn.addEventListener("click", () => addRow());
+
+    saveBtn.addEventListener("click", () => {
+        const rows = tableBody.querySelectorAll("tr");
+        const allowedUrls = Array.from(rows).map((row) => {
+            const inputs = row.querySelectorAll("input");
+            return [inputs[0].value, inputs[1].value];
+        });
+        chrome.storage.sync.set({ allowedUrls: allowedUrls });
+        alert("URLs saved!");
+    });
+
+    redirectBtn.addEventListener("click", () => {
+        chrome.storage.sync.get("allowedUrls", (data) => {
+            const allowedUrls = data.allowedUrls || [];
+            chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+                const currentUrl = tabs[0].url;
+                const matchedUrl = allowedUrls.find(([storeUrl]) => currentUrl.startsWith(storeUrl));
+
+                if (!matchedUrl) {
+                    alert("Store URL not found in allowed URLs.");
+                    return;
+                }
+
+                const [storeUrl, adminBase] = matchedUrl;
+
+                chrome.tabs.sendMessage(tabs[0].id, { action: "getProductId" }, (response) => {
+                    if (response && response.productId) {
+                        const adminUrl = `${storeUrl}/${adminBase}/catalog/product/edit/id/${response.productId}`;
+                        chrome.tabs.create({ url: adminUrl });
+                    } else {
+                        alert("Product ID not found!");
+                    }
+                });
+            });
+        });
+    });
+
+    function addRow(urlPair = ["", ""]) {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+      <td><input type="text" value="${urlPair[0]}" placeholder="Product Base URL" /></td>
+      <td><input type="text" value="${urlPair[1]}" placeholder="Admin Base URL (without '/')" /></td>
+      <td><button class="delete-row">Delete</button></td>
+    `;
+        tableBody.appendChild(row);
+
+        // Add delete button functionality
+        row.querySelector(".delete-row").addEventListener("click", () => {
+            row.remove();
+        });
+    }
+});
