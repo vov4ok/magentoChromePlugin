@@ -52,9 +52,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 switch (action) {
                     case "toDashboard":
+                        adminUrl += "dashboard";
+                        break;
                     case "toCache":
-                    case "toOrders":
                         adminUrl += "cache/index/key";
+                        break;
+                    case "toOrders":
+                        adminUrl += "sales/order/index/key/";
                         break;
                     case "toProduct":
                         chrome.tabs.sendMessage(tabs[0].id, { action: "getProductId" }, (response) => {
