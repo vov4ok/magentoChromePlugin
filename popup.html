@@ -9,15 +9,15 @@
 <body>
 <!-- Tabs Navigation -->
 <div class="tabs">
-    <div class="tab active" data-target="admin-tab">Open current product in Admin</div>
+    <div class="tab active" data-target="config">Config</div>
+    <div class="tab" data-target="admin-tab">Open current product in Admin</div>
     <div class="tab" data-target="description-tab">Description</div>
     <div class="tab" data-target="contact-tab">Contact us</div>
 </div>
 <!-- Tabs Navigation -->
 
 <!-- Tabs Open product in admin -->
-<div id="admin-tab" class="tab-content active">
-    <button id="redirect-button">Go to Admin</button>
+<div id="config" class="tab-content active">
     <h4>Allowed URLs and Admin path:</h4>
     <table id="url-table">
         <thead>
@@ -31,6 +31,15 @@
     </table>
     <button id="add-row">Add Row</button>
     <button id="save-urls">Save URLs</button>
+</div>
+<!-- Tabs Open product in admin -->
+
+<!-- Tabs Open product in admin -->
+<div id="admin-tab" class="tab-content">
+    <button id="redirect-to-product-button">Open current product in Admin</button>
+    <button id="redirect-to-dashboard-button">Open admin dashboard page</button>
+    <button id="redirect-to-orders-button">Open admin orders page</button>
+    <button id="redirect-to-cache-button">Open admin cache page</button>
 </div>
 <!-- Tabs Open product in admin -->
 
