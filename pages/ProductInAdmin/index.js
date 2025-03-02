@@ -38,6 +38,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const handleRedirect = (action) => {
         chrome.storage.sync.get("allowedUrls", (data) => {
             const allowedUrls = data.allowedUrls || [];
+            console.log(chrome)
+            console.log(chrome.tabs)
             chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
                 const currentUrl = tabs[0].url;
                 const matchedUrl = allowedUrls.find(([storeUrl]) => currentUrl.startsWith(storeUrl));
