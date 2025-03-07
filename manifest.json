@@ -13,6 +13,17 @@
   "icons": {
     "128": "pub/icon.png"
   },
+  "action": {
+    "default_icon": "pub/icon.png"
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+B",
+        "mac": "Command+B"
+      }
+    }
+  },
   "background": {
     "service_worker": "background.js"
   },
